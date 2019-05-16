@@ -8,4 +8,27 @@ tips ：
 0，基于K8S集群
 1，elasticsearch端口9200,9300都打开,
 2，kibana的5601端口打开（kibana默认访问localhost的es的9200端口，所以将kibaba与es放在一个pod里面，访问ip+5601就可以访问kibana且kibana与es自动连接上）
-3，配置fluent-bit的配置文件（镜像内/fluent-bit/etc/fluent-bit.conf）示例见图
+3，配置fluent-bit的配置文件（镜像内/fluent-bit/etc/fluent-bit.conf）示例见下
+
+-------------------------
+fluent-bit.conf
+-------------------------
+[SERVICE]
+    Flush        1
+    Daemon       Off           
+    Log_Level    info
+
+[INPUT]
+    Name        tail
+    Path        /var/log/nginx/access.log
+    Db          /tmp/nginx-log.db
+    Tag         nginx-log 
+
+[OUTPUT]
+    Name        forward
+    Match       *
+    Host        10.10.80.205
+    Port        24224
+-------------------------
+参考资料
+https://www.jianshu.com/p/e9b6852a08d1
