@@ -1,4 +1,11 @@
-dunkerhub:https://hub.docker.com/_/elasticsearch 
+dunkerhub地址:https://hub.docker.com/_/elasticsearch 
+版本efk的版本
 elasticsearch:6.7.2
 kibana:6.7.2   (kibana与elasticsearch保持版本一致)
 fluent/fluent-bit:0.13.0
+
+tips ：
+0，基于K8S集群
+1，elasticsearch端口9200,9300都打开,
+2，kibana的5601端口打开（kibana默认访问localhost的es的9200端口，所以将kibaba与es放在一个pod里面，访问ip+5601就可以访问kibana且kibana与es自动连接上）
+3，配置fluent-bit的配置文件（镜像内/fluent-bit/etc/fluent-bit.conf）示例见图
