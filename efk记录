@@ -1,0 +1,4 @@
+dunkerhub:https://hub.docker.com/_/elasticsearch 
+elasticsearch:6.7.2
+kibana:6.7.2   (kibana与elasticsearch保持版本一致)
+fluent/fluent-bit:0.13.0
